@@ -1,3 +1,5 @@
+import 'package:bride_story/pages/home_page.dart';
+import 'package:bride_story/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluro/fluro.dart';
@@ -10,10 +12,10 @@ void main() {
   Router router = new Router();
 
   // Define our home page.
-  // router.define('/', handler: new Handler(
-  //     handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  //   return new HomePageLayout();
-  // }));
+  router.define('/homePage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new HomePage();
+  }));
 
   // initSharedPreferences();
 
@@ -41,13 +43,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "lblTitleApplication",
-      theme: new ThemeData(
-        // primarySwatch: Colors.red,
-        // primaryColor: kTelkomselRed,
-        fontFamily: 'Roboto',
+      title: "Bride Vendor",
+      theme: new ThemeData(      
+        fontFamily: 'Nunito',
       ),
-      // home: HomePageLayout(),
+      home: LoginPage(),
       onGenerateRoute: router.generator,
     );
   }
