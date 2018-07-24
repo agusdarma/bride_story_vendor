@@ -1,5 +1,7 @@
 import 'package:bride_story/pages/home_page.dart';
 import 'package:bride_story/pages/login_page.dart';
+import 'package:bride_story/pages/schedule_page.dart';
+import 'package:bride_story/pages/vendor_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluro/fluro.dart';
@@ -15,6 +17,18 @@ void main() {
   router.define('/homePage', handler: new Handler(
       handlerFunc: (BuildContext context, Map<String, dynamic> params) {
     return new HomePage();
+  }));
+
+  // Define our schedule page.
+  router.define('/schedulePage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new SchedulePage();
+  }));
+
+  // Define our vendor page.
+  router.define('/vendorPage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new VendorPage();
   }));
 
   // initSharedPreferences();

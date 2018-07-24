@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bride_story/pages/webview_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -127,6 +128,20 @@ class _HomePageState extends State<HomePage> {
             ));
     //);
   }
+  void _navigateTo4DPage(BuildContext context) {
+    // Navigator.pushNamed(context, "/webViewPage");
+    Navigator.push(context,
+              new MaterialPageRoute(builder: (context) => new WebviewPage(url: "https://roundme.com/tour/291549/view/919147/", )),
+            );
+  }
+
+  void _navigateToSchedulePage(BuildContext context) {
+    Navigator.pushNamed(context, "/schedulePage");
+  }
+
+  void _navigateToVendorPage(BuildContext context) {
+    Navigator.pushNamed(context, "/vendorPage");
+  }
 
   Widget _createNavButtons(BuildContext context) {
     // String labelBankingTrx = AppsLang.get().bankingTrx;
@@ -157,6 +172,7 @@ class _HomePageState extends State<HomePage> {
                   //   Navigator.pushNamed(context, 'list-bank');
                   // else
                   //   Navigator.pushNamed(context, 'choose-bank/init');
+                  _navigateTo4DPage(context);
                 }),
             _createCardNavButton(
                 context: context,
@@ -164,6 +180,7 @@ class _HomePageState extends State<HomePage> {
                 label: labelMerchantTrx,
                 onTap: () {
                   // Navigator.pushNamed(context, 'merchantlist');
+                  _navigateToSchedulePage(context);
                 }),
             _createCardNavButton(
                 context: context,
@@ -171,6 +188,7 @@ class _HomePageState extends State<HomePage> {
                 label: labelPromo,
                 onTap: () {
                   // Navigator.pushNamed(context, 'advertising');
+                  _navigateToVendorPage(context);
                 }),
             _createCardNavButton(
                 context: context,

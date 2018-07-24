@@ -34,8 +34,16 @@ dependencies:
   # html render
   flutter_html_view: ^0.5.2
 
-  # calendar
-  scrolling_calendar: "^0.2.10"
+  # # calendar
+  # scrolling_calendar: "^0.2.10"
+
+  #plugins calendar
+  date_utils: ^0.0.1
+  tuple: ^1.0.1
+  intl: ^0.15.0
+
+  #webview
+  flutter_webview_plugin: "^0.1.6"
 
 
 dev_dependencies:
