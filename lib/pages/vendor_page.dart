@@ -1,5 +1,5 @@
-import 'package:bride_story/plugins/calendar/lib/flutter_calendar.dart';
 import 'package:flutter/material.dart';
+import '../models/vendor_model.dart';
 
 class VendorPage extends StatefulWidget {
   @override
@@ -7,27 +7,50 @@ class VendorPage extends StatefulWidget {
 }
 
 class _VendorPageState extends State<VendorPage> {
-  List<DateTime> listVendor = new List<DateTime>();
-  DateTime _tgl;
-  double _opacity;
+  String text = "Loading";
+  List<VendorModel> listVendors = new List<VendorModel>();
+  // List<DateTime> listVendor = new List<DateTime>();
+  // DateTime _tgl;
+  // double _opacity;
 
-  void _populateScheduledData() {
-    // listBooked.add(new DateTime.now());
-    listVendor.add(new DateTime(2018, DateTime.july, 22));
-    listVendor.add(new DateTime(2018, DateTime.july, 21));
-    listVendor.add(new DateTime(2018, DateTime.july, 28));
-    listVendor.add(new DateTime(2018, DateTime.july, 29));
-    // listBooked.add(new DateTime(2018, 29, 6));
-    // listBooked.add(new DateTime(2018, 28, 6));
+  /*
+for demo hardcode
+ */
+  void _populateVendorData() {
+    listVendors.add(new VendorModel(
+        "assets/images/1.jpg", "Michale Buble - Everthing", "Jova Music"));
+    listVendors.add(new VendorModel(
+        "assets/images/2.jpg", "Lately - Stevie Wonders Part 2", "Catering xxx"));
+    listVendors.add(new VendorModel(
+        "assets/images/3.jpg", "Lately - Stevie Wonders Part 3", "Entertainment"));
+    listVendors.add(new VendorModel(
+        "assets/images/1.jpg", "Lately - Stevie Wonders Part 4", "EO"));
+    listVendors.add(new VendorModel(
+        "assets/images/2.jpg", "Lately - Stevie Wonders Part 5", "Jova Music"));
+    listVendors.add(new VendorModel(
+        "assets/images/3.jpg", "Lately - Stevie Wonders Part 6", "Jova Music"));
+    listVendors.add(new VendorModel(
+        "assets/images/1.jpg", "Michale Buble - Everthing", "Jova Music"));
   }
+
+  // void _populateScheduledData() {
+  //   // listBooked.add(new DateTime.now());
+  //   listVendor.add(new DateTime(2018, DateTime.july, 22));
+  //   listVendor.add(new DateTime(2018, DateTime.july, 21));
+  //   listVendor.add(new DateTime(2018, DateTime.july, 28));
+  //   listVendor.add(new DateTime(2018, DateTime.july, 29));
+  //   // listBooked.add(new DateTime(2018, 29, 6));
+  //   // listBooked.add(new DateTime(2018, 28, 6));
+  // }
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      _populateScheduledData();
-      _tgl = new DateTime.now();
-      _opacity = 0.0;
+      _populateVendorData();
+      // _populateScheduledData();
+      // _tgl = new DateTime.now();
+      // _opacity = 0.0;
     });
   }
 
@@ -37,188 +60,109 @@ class _VendorPageState extends State<VendorPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new SafeArea(
+    return SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Vendor Page")),
-        body: new Container(
-          margin: new EdgeInsets.symmetric(
-            horizontal: 5.0,
-            vertical: 10.0,
-          ),
-          child: new ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              // new Text('A Custom Weekly Calendar:'),
-              new Calendar(
-                // onSelectedRangeChange: (range) => print(range),
-                isExpandable: false,
-                dayBuilder: (BuildContext context, DateTime tgl) {
-                  // String a = day.day.toString();
-                  for (var i = 0; i < listVendor.length; i++) {
-                    String year = listVendor[i].year.toString();
-                    String month = listVendor[i].month.toString();
-                    String day = listVendor[i].day.toString();
-                    String dateOnly = year + month + day;
-                    // print('ini day booked ' + dateOnly);
-                    String yeara = tgl.year.toString();
-                    String montha = tgl.month.toString();
-                    String daya = tgl.day.toString();
-                    String tglOnly = yeara + montha + daya;
-                    // print('ini day ' + tglOnly);
-                    if (tglOnly == dateOnly) {
-                      return new InkWell(
-                        onTap: () => _openDetailTgl(tgl),
-                        child: new Container(
-                          decoration: new BoxDecoration(
-                            border: new Border.all(color: Colors.amber),
-                            shape: BoxShape.circle,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          child: new Text(
-                            tgl.day.toString(),
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                  return new InkWell(
-                    onTap: () => _openDetailTgl(tgl),
-                    child: new Container(
-                      decoration: new BoxDecoration(
-                          border: new Border.all(color: Colors.black38)),
-                      child: new Text(
-                        tgl.day.toString(),
-                      ),
-                    ),
-                  );
-                },
+        appBar: new AppBar(title: new Text("Vendor List")),
+        body: new Column(
+          children: <Widget>[
+            new Expanded(
+              child: new Container(
+                child: new ListView.builder(
+                  itemCount: listVendors.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return row(context, index);
+                  },
+                ),
               ),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: new Text(_tgl.day.toString(),
-                        style: TextStyle(
-                          fontSize: 100.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: new Text(
-                        _convertBulan(_tgl.month) + " " + _tgl.year.toString(),
-                        style: TextStyle(
-                          fontSize: 50.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Siang",
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Booked",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Malam",
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Booked",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  _openDetailTgl(DateTime tgl) {
-    setState(() {
-      _tgl = tgl;
-      _opacity = 0.0;
-      for (var i = 0; i < listVendor.length; i++) {
-        String day = listVendor[i].day.toString();
-        if (tgl.day.toString() == day) {
-          _opacity = 1.0;
-        }
-      }
-    });
+  Widget row(BuildContext context, int index) {
+    return new Column(
+      children: <Widget>[
+        new Container(
+          height: 150.0,
+          margin:
+              EdgeInsets.only(top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
+          decoration: new BoxDecoration(
+              gradient: new LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  colors: [const Color(0xFFCCCCCC), const Color(0xFFFFFFFF)],
+                  end: Alignment.topCenter,
+                  stops: [0.0, 1.0],
+                  tileMode: TileMode.repeated),
+              shape: BoxShape.rectangle,
+              image: new DecorationImage(
+                fit: BoxFit.none,
+                image: new AssetImage(listVendors.elementAt(index).linkImage),
+              )),
+        ),
+        new Container(
+          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+          alignment: Alignment.topLeft,
+          child: new Text(listVendors.elementAt(index).titleVendor,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              )),
+        ),
+        new Container(
+          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+          alignment: Alignment.topLeft,
+          child: new Text(listVendors.elementAt(index).vendorName,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              )),
+        ),
+      ],
+    );
   }
 
-  String _convertBulan(int month) {
-    String bulan = "";
-    if (1 == month) {
-      bulan = "Januari";
-    } else if (2 == month) {
-      bulan = "Februari";
-    } else if (3 == month) {
-      bulan = "Maret";
-    } else if (4 == month) {
-      bulan = "April";
-    } else if (5 == month) {
-      bulan = "Mei";
-    } else if (6 == month) {
-      bulan = "Juni";
-    } else if (7 == month) {
-      bulan = "Juli";
-    } else if (8 == month) {
-      bulan = "Agustus";
-    } else if (9 == month) {
-      bulan = "September";
-    } else if (10 == month) {
-      bulan = "Oktober";
-    } else if (11 == month) {
-      bulan = "November";
-    } else if (12 == month) {
-      bulan = "Desember";
-    }
-    return bulan;
-  }
+  // _openDetailTgl(DateTime tgl) {
+  //   setState(() {
+  //     _tgl = tgl;
+  //     _opacity = 0.0;
+  //     for (var i = 0; i < listVendor.length; i++) {
+  //       String day = listVendor[i].day.toString();
+  //       if (tgl.day.toString() == day) {
+  //         _opacity = 1.0;
+  //       }
+  //     }
+  //   });
+  // }
+
+  // String _convertBulan(int month) {
+  //   String bulan = "";
+  //   if (1 == month) {
+  //     bulan = "Januari";
+  //   } else if (2 == month) {
+  //     bulan = "Februari";
+  //   } else if (3 == month) {
+  //     bulan = "Maret";
+  //   } else if (4 == month) {
+  //     bulan = "April";
+  //   } else if (5 == month) {
+  //     bulan = "Mei";
+  //   } else if (6 == month) {
+  //     bulan = "Juni";
+  //   } else if (7 == month) {
+  //     bulan = "Juli";
+  //   } else if (8 == month) {
+  //     bulan = "Agustus";
+  //   } else if (9 == month) {
+  //     bulan = "September";
+  //   } else if (10 == month) {
+  //     bulan = "Oktober";
+  //   } else if (11 == month) {
+  //     bulan = "November";
+  //   } else if (12 == month) {
+  //     bulan = "Desember";
+  //   }
+  //   return bulan;
+  // }
 }
