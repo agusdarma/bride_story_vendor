@@ -1,5 +1,6 @@
 import 'package:bride_story/plugins/calendar/lib/flutter_calendar.dart';
 import 'package:flutter/material.dart';
+import 'schedule_detail_page.dart';
 
 class SchedulePage extends StatefulWidget {
   @override
@@ -37,6 +38,34 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget namaPengantin = TextFormField(
+      autofocus: false,
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: 'Search By Name',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+
+    Widget searchButton = Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: Material(
+        borderRadius: BorderRadius.circular(30.0),
+        shadowColor: Colors.blueAccent.shade100,
+        elevation: 5.0,
+        child: MaterialButton(
+          minWidth: MediaQuery.of(context).size.width,
+          height: 42.0,
+          onPressed: () {
+            // Navigator.pushNamed(context, "/homePage");
+          },
+          color: Colors.blueAccent,
+          child: Text('Search', style: TextStyle(color: Colors.white)),
+        ),
+      ),
+    );
+
     return new SafeArea(
       child: new Scaffold(
         appBar: new AppBar(title: new Text("Schedule Page")),
@@ -48,7 +77,8 @@ class _SchedulePageState extends State<SchedulePage> {
           child: new ListView(
             shrinkWrap: true,
             children: <Widget>[
-              // new Text('A Custom Weekly Calendar:'),
+              namaPengantin,
+              searchButton,
               new Calendar(
                 // onSelectedRangeChange: (range) => print(range),
                 isExpandable: false,
@@ -122,60 +152,87 @@ class _SchedulePageState extends State<SchedulePage> {
                           fontWeight: FontWeight.bold,
                         )),
                   )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Siang",
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Booked",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Malam",
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
-              new Opacity(
-                  opacity: _opacity,
-                  child: new Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.2),
-                    ),
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(5.0),
-                    child: new Text("Booked",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  )),
+              new GestureDetector(
+                  child: new Opacity(
+                      opacity: _opacity,
+                      child: new Container(
+                        decoration: new BoxDecoration(
+                          color: Colors.yellowAccent.withOpacity(0.2),
+                        ),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(5.0),
+                        child: new Text("Morning Event",
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      )),
+                  onTap: () {
+                    _navigateToScheduleDetailPage(context, "Morning Event");
+                  }),
+
+              // new Opacity(
+              //     opacity: _opacity,
+              //     child: new Container(
+              //       decoration: new BoxDecoration(
+              //         color: Colors.red.withOpacity(0.2),
+              //       ),
+              //       alignment: Alignment.center,
+              //       padding: EdgeInsets.all(5.0),
+              //       child: new Text("Booked",
+              //           style: TextStyle(
+              //             fontSize: 25.0,
+              //             fontWeight: FontWeight.bold,
+              //           )),
+              //     )),
+              new GestureDetector(
+                  child: new Opacity(
+                      opacity: _opacity,
+                      child: new Container(
+                        decoration: new BoxDecoration(
+                          color: Colors.blueAccent.withOpacity(0.2),
+                        ),
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(5.0),
+                        child: new Text("Night Event",
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      )),
+                  onTap: () {
+                    _navigateToScheduleDetailPage(context, "Night Event");
+                  })
+
+              // new Opacity(
+              //     opacity: _opacity,
+              //     child: new Container(
+              //       decoration: new BoxDecoration(
+              //         color: Colors.red.withOpacity(0.2),
+              //       ),
+              //       alignment: Alignment.center,
+              //       padding: EdgeInsets.all(5.0),
+              //       child: new Text("Booked",
+              //           style: TextStyle(
+              //             fontSize: 25.0,
+              //             fontWeight: FontWeight.bold,
+              //           )),
+              //     )),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _navigateToScheduleDetailPage(BuildContext context, String param) {
+    // Navigator.pushNamed(context, "/schedulePage");
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+          builder: (context) => new ScheduleDetailPage(
+                param: param,
+              )),
     );
   }
 
