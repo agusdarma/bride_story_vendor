@@ -1,6 +1,7 @@
 import 'package:bride_story/pages/home_page.dart';
 import 'package:bride_story/pages/login_page.dart';
 import 'package:bride_story/pages/schedule_page.dart';
+import 'package:bride_story/pages/vendor_detail_page.dart';
 import 'package:bride_story/pages/vendor_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,12 @@ void main() {
   router.define('/vendorPage', handler: new Handler(
       handlerFunc: (BuildContext context, Map<String, dynamic> params) {
     return new VendorPage();
+  }));
+
+  // Define our vendor detail page.
+  router.define('/vendorDetailPage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new VendorDetailPage();
   }));
 
   // initSharedPreferences();

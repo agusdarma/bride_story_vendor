@@ -19,10 +19,10 @@ for demo hardcode
   void _populateVendorData() {
     listVendors.add(new VendorModel(
         "assets/images/1.jpg", "Michale Buble - Everthing", "Jova Music"));
-    listVendors.add(new VendorModel(
-        "assets/images/2.jpg", "Lately - Stevie Wonders Part 2", "Catering xxx"));
-    listVendors.add(new VendorModel(
-        "assets/images/3.jpg", "Lately - Stevie Wonders Part 3", "Entertainment"));
+    listVendors.add(new VendorModel("assets/images/2.jpg",
+        "Lately - Stevie Wonders Part 2", "Catering xxx"));
+    listVendors.add(new VendorModel("assets/images/3.jpg",
+        "Lately - Stevie Wonders Part 3", "Entertainment"));
     listVendors.add(new VendorModel(
         "assets/images/1.jpg", "Lately - Stevie Wonders Part 4", "EO"));
     listVendors.add(new VendorModel(
@@ -84,43 +84,63 @@ for demo hardcode
   Widget row(BuildContext context, int index) {
     return new Column(
       children: <Widget>[
-        new Container(
-          height: 150.0,
-          margin:
-              EdgeInsets.only(top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
-          decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  colors: [const Color(0xFFCCCCCC), const Color(0xFFFFFFFF)],
-                  end: Alignment.topCenter,
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.repeated),
-              shape: BoxShape.rectangle,
-              image: new DecorationImage(
-                fit: BoxFit.none,
-                image: new AssetImage(listVendors.elementAt(index).linkImage),
-              )),
-        ),
-        new Container(
-          margin: EdgeInsets.only(left: 16.0, right: 16.0),
-          alignment: Alignment.topLeft,
-          child: new Text(listVendors.elementAt(index).titleVendor,
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              )),
-        ),
-        new Container(
-          margin: EdgeInsets.only(left: 16.0, right: 16.0),
-          alignment: Alignment.topLeft,
-          child: new Text(listVendors.elementAt(index).vendorName,
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              )),
-        ),
+        new GestureDetector(
+            onTap: () {
+              _navigateToVendorDetailPage(context);
+            },
+            child: new Container(
+              height: 150.0,
+              margin: EdgeInsets.only(
+                  top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
+              decoration: new BoxDecoration(
+                  gradient: new LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      colors: [
+                        const Color(0xFFCCCCCC),
+                        const Color(0xFFFFFFFF)
+                      ],
+                      end: Alignment.topCenter,
+                      stops: [0.0, 1.0],
+                      tileMode: TileMode.repeated),
+                  shape: BoxShape.rectangle,
+                  image: new DecorationImage(
+                    fit: BoxFit.none,
+                    image:
+                        new AssetImage(listVendors.elementAt(index).linkImage),
+                  )),
+            )),
+        new GestureDetector(
+            onTap: () {
+              _navigateToVendorDetailPage(context);
+            },
+            child: new Container(
+              margin: EdgeInsets.only(left: 16.0, right: 16.0),
+              alignment: Alignment.topLeft,
+              child: new Text(listVendors.elementAt(index).titleVendor,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  )),
+            )),
+        new GestureDetector(
+            onTap: () {
+              _navigateToVendorDetailPage(context);
+            },
+            child: new Container(
+              margin: EdgeInsets.only(left: 16.0, right: 16.0),
+              alignment: Alignment.topLeft,
+              child: new Text(listVendors.elementAt(index).vendorName,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  )),
+            )),
       ],
     );
+  }
+
+  void _navigateToVendorDetailPage(BuildContext context) {
+    Navigator.pushNamed(context, "/vendorDetailPage");
   }
 
   // _openDetailTgl(DateTime tgl) {
