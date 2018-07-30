@@ -417,60 +417,55 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
                 )),
           ],
         ),
-        new Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
-            new Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
-            new Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
-            new Icon(
-              Icons.star,
-              color: Colors.white,
-            ),
-            new Container(
-                padding: EdgeInsets.only(right: 2.0),
-                child: new Center(
-                  child: Text(
-                    "32",
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                )),
-            new Container(
-                padding: EdgeInsets.only(right: 2.0),
-                child: new Center(
-                  child: Text(
-                    "reviews",
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                    ),
-                  ),
-                )),
-          ],
-        ),
+        // new Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     new Icon(
+        //       Icons.star,
+        //       color: Colors.white,
+        //     ),
+        //     new Icon(
+        //       Icons.star,
+        //       color: Colors.white,
+        //     ),
+        //     new Icon(
+        //       Icons.star,
+        //       color: Colors.white,
+        //     ),
+        //     new Icon(
+        //       Icons.star,
+        //       color: Colors.white,
+        //     ),
+        //     new Container(
+        //         padding: EdgeInsets.only(right: 2.0),
+        //         child: new Center(
+        //           child: Text(
+        //             "32",
+        //             style: new TextStyle(
+        //               color: Colors.white,
+        //               fontSize: 14.0,
+        //             ),
+        //           ),
+        //         )),
+        //     new Container(
+        //         padding: EdgeInsets.only(right: 2.0),
+        //         child: new Center(
+        //           child: Text(
+        //             "reviews",
+        //             style: new TextStyle(
+        //               color: Colors.white,
+        //               fontSize: 14.0,
+        //             ),
+        //           ),
+        //         )),
+        //   ],
+        // ),
       ],
     );
 
     return SafeArea(
       child: new Scaffold(
-          appBar: AppBar(
-            title: new TextField(
-              decoration: new InputDecoration(
-                  hintText: "Search Vendors, Articles Here"),
-            ),
-          ),
+          appBar: new AppBar(title: new Text("Vendor Detail Page")),
           body: new ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
@@ -480,23 +475,31 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
                   roundedImage,
                 ],
               ),
-              txtOnline,
-              new Divider(
-                color: Colors.black,
-                height: 2.0,
-              ),
-              buttons,
-              new Divider(
-                color: Colors.black,
-                height: 2.0,
-              ),
-              projectRow,
-              new Divider(
-                color: Colors.black,
-                height: 2.0,
-              ),
-              projectImages,
-              socialMedia,
+              new Container(
+                height: MediaQuery.of(context).size.height,
+                child: new ListView.builder(
+                  itemBuilder: (BuildContext context, int index) =>
+                      new EntryItem(data[index]),
+                  itemCount: data.length,
+                ),
+              )
+              // txtOnline,
+              // new Divider(
+              //   color: Colors.black,
+              //   height: 2.0,
+              // ),
+              // buttons,
+              // new Divider(
+              //   color: Colors.black,
+              //   height: 2.0,
+              // ),
+              // projectRow,
+              // new Divider(
+              //   color: Colors.black,
+              //   height: 2.0,
+              // ),
+              // projectImages,
+              // socialMedia,
             ],
           )),
     );
@@ -523,5 +526,61 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
 
   void _navigateToBookingPage(BuildContext context) {
     Navigator.pushNamed(context, "/bookingPage");
+  }
+}
+
+// One entry in the multilevel list displayed by this app.
+class Entry {
+  Entry(this.title, [this.children = const <Entry>[]]);
+  final String title;
+  final List<Entry> children;
+}
+
+// The entire multilevel list displayed by this app.
+final List<Entry> data = <Entry>[
+  new Entry(
+    'Show Time',
+    <Entry>[
+      new Entry('18 Maret, Malam'),
+      new Entry('25 Maret, Malam'),
+      new Entry('07 April, Siang'),
+      new Entry('14 April, Malam'),
+      new Entry('18 April, Siang'),
+    ],
+  ),  
+];
+
+// Displays one Entry. If the entry has children then it's displayed
+// with an ExpansionTile.
+class EntryItem extends StatelessWidget {
+  const EntryItem(this.entry);
+
+  final Entry entry;
+
+  Widget _buildTiles(Entry root) {
+    if (root.children.isEmpty)
+      return new ListTile(
+        // subtitle: new Text("subtitle"),
+          title: new Text(root.title,
+              style: new TextStyle(
+                color: Colors.blueAccent,                
+                fontSize: 15.0,
+              )));
+    return new ExpansionTile(
+      leading: new Icon(Icons.timer),
+      key: new PageStorageKey<Entry>(root),
+      title: new Text(root.title,
+          style: new TextStyle(
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+          )),
+      children: root.children.map(_buildTiles).toList(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(entry);
   }
 }

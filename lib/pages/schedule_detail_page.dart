@@ -116,7 +116,7 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
                     // _navigateToScheduleDetailPage(context);
                   }),
               new Container(
-                height: 300.0,
+                height: 350.0,
                 child: new ListView.builder(
                   itemBuilder: (BuildContext context, int index) =>
                       new EntryItem(data[index]),
