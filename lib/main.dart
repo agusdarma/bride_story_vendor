@@ -1,3 +1,4 @@
+import 'package:bride_story/pages/attachment_page.dart';
 import 'package:bride_story/pages/home_page.dart';
 import 'package:bride_story/pages/login_page.dart';
 import 'package:bride_story/pages/payment_detail_page.dart';
@@ -44,6 +45,12 @@ void main() {
   router.define('/paymentPage', handler: new Handler(
       handlerFunc: (BuildContext context, Map<String, dynamic> params) {
     return new PaymentPage();
+  }));
+
+  // Define our attachment page.
+  router.define('/attachmentPage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new AttachmentPage();
   }));
 
 

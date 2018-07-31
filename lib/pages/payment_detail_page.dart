@@ -119,7 +119,7 @@ class _PaymentDetailPageState extends State<PaymentDetailPage> {
                 height: 350.0,
                 child: new ListView.builder(
                   itemBuilder: (BuildContext context, int index) =>
-                      new EntryItem(data[index]),
+                      new EntryItem(data[index], context),
                   itemCount: data.length,
                 ),
               )
@@ -165,16 +165,27 @@ final List<Entry> data = <Entry>[
 // Displays one Entry. If the entry has children then it's displayed
 // with an ExpansionTile.
 class EntryItem extends StatelessWidget {
-  const EntryItem(this.entry);
+  const EntryItem(this.entry, this.ctx);
 
   final Entry entry;
+  final BuildContext ctx;
+
+  void _navigateToAttachMentPage(BuildContext context) {
+    Navigator.pushNamed(context, "/attachmentPage");
+  }
 
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return new ListTile(
-          trailing: (root.title.contains("DP")||root.title.contains("Booking")) == true
-              ? new Icon(Icons.image)
-              : null,            
+          onTap: () {
+            // Navigator.pushNamed(context, 'other');
+            _navigateToAttachMentPage(ctx);
+          },
+          trailing:
+              (root.title.contains("DP") || root.title.contains("Booking")) ==
+                      true
+                  ? new Icon(Icons.image)
+                  : null,
           title: new Text(root.title,
               style: new TextStyle(
                 color: Colors.blueAccent,
