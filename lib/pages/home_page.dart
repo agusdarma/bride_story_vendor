@@ -142,16 +142,19 @@ class _HomePageState extends State<HomePage> {
   void _navigateToVendorPage(BuildContext context) {
     Navigator.pushNamed(context, "/vendorPage");
   }
+  void _navigateToPaymentPage(BuildContext context) {
+    Navigator.pushNamed(context, "/paymentPage");
+  }
 
   Widget _createNavButtons(BuildContext context) {
     // String labelBankingTrx = AppsLang.get().bankingTrx;
     // String labelMerchantTrx = AppsLang.get().merchantTrx;
     // String labelPromo = AppsLang.get().promo;
     // String labelOthers = AppsLang.get().others;
-    String labelBankingTrx = "4D Ballroom";
-    String labelMerchantTrx = "Schedule Date";
-    String labelPromo = "Vendor Schedule";
-    String labelOthers = "Payment";
+    String label4DBallRoom = "4D Ballroom";
+    String labelScheduleDate = "Schedule Date";
+    String labelVendorSchedule = "Vendor Schedule";
+    String labelPayment = "Payment";
 
     return new Expanded(
         flex: 1,
@@ -165,7 +168,7 @@ class _HomePageState extends State<HomePage> {
             _createCardNavButton(
                 context: context,
                 imageName: 'assets/images/home_transaksi_perbankan.png',
-                label: labelBankingTrx,
+                label: label4DBallRoom,
                 onTap: () {
                   // print('[$ID] Profile: ${_profile?.selectedBank}');
                   // if (_profile != null && _profile.selectedBank != '')
@@ -177,7 +180,7 @@ class _HomePageState extends State<HomePage> {
             _createCardNavButton(
                 context: context,
                 imageName: 'assets/images/home_transaksi_merchant.png',
-                label: labelMerchantTrx,
+                label: labelScheduleDate,
                 onTap: () {
                   // Navigator.pushNamed(context, 'merchantlist');
                   _navigateToSchedulePage(context);
@@ -185,7 +188,7 @@ class _HomePageState extends State<HomePage> {
             _createCardNavButton(
                 context: context,
                 imageName: 'assets/images/home_promosi_program.png',
-                label: labelPromo,
+                label: labelVendorSchedule,
                 onTap: () {
                   // Navigator.pushNamed(context, 'advertising');
                   _navigateToVendorPage(context);
@@ -193,9 +196,10 @@ class _HomePageState extends State<HomePage> {
             _createCardNavButton(
                 context: context,
                 imageName: 'assets/images/home_lainnya.png',
-                label: labelOthers,
+                label: labelPayment,
                 onTap: () {
                   // Navigator.pushNamed(context, 'other');
+                   _navigateToPaymentPage(context);
                 }),
           ],
         ));

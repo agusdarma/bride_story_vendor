@@ -1,5 +1,7 @@
 import 'package:bride_story/pages/home_page.dart';
 import 'package:bride_story/pages/login_page.dart';
+import 'package:bride_story/pages/payment_detail_page.dart';
+import 'package:bride_story/pages/payment_page.dart';
 import 'package:bride_story/pages/schedule_page.dart';
 import 'package:bride_story/pages/vendor_detail_page.dart';
 import 'package:bride_story/pages/vendor_page.dart';
@@ -37,6 +39,13 @@ void main() {
       handlerFunc: (BuildContext context, Map<String, dynamic> params) {
     return new VendorDetailPage();
   }));
+
+  // Define our payment page.
+  router.define('/paymentPage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new PaymentPage();
+  }));
+
 
   // initSharedPreferences();
 
