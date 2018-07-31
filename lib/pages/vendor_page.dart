@@ -62,7 +62,10 @@ for demo hardcode
   Widget build(BuildContext context) {
     return SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Vendor List")),
+        appBar: new AppBar(
+          title: new Text("Vendor List"),
+          backgroundColor: Colors.redAccent,
+        ),
         body: new Column(
           children: <Widget>[
             new Expanded(

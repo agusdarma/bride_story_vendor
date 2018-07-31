@@ -20,7 +20,7 @@ class _PaymentPageState extends State<PaymentPage> {
     listPayment.add(new DateTime(2018, DateTime.july, 29));
     listPayment.add(new DateTime(2018, DateTime.july, 31));
     listPayment.add(new DateTime(2018, DateTime.august, 2));
-    listPayment.add(new DateTime(2018, DateTime.august, 9));   
+    listPayment.add(new DateTime(2018, DateTime.august, 9));
   }
 
   @override
@@ -69,7 +69,10 @@ class _PaymentPageState extends State<PaymentPage> {
 
     return new SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Payment Page")),
+        appBar: new AppBar(
+          title: new Text("Payment Page"),
+          backgroundColor: Colors.redAccent,
+        ),
         body: new Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 5.0,
@@ -99,7 +102,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           decoration: new BoxDecoration(
                             border: new Border.all(color: Colors.amber),
                             shape: BoxShape.circle,
-                            color: Theme.of(context).primaryColor,
+                            color: Colors.redAccent,
                           ),
                           child: new Text(
                             tgl.day.toString(),

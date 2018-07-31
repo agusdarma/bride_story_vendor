@@ -59,7 +59,10 @@ class _ScheduleDetailPageState extends State<ScheduleDetailPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Schedule Detail Page")),
+        appBar: new AppBar(
+          title: new Text("Schedule Detail Page"),
+          backgroundColor: Colors.redAccent,
+        ),
         body: new Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 5.0,
@@ -172,10 +175,10 @@ class EntryItem extends StatelessWidget {
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return new ListTile(
-        subtitle: new Text("subtitle"),
+          subtitle: new Text("subtitle"),
           title: new Text(root.title,
               style: new TextStyle(
-                color: Colors.blueAccent,                
+                color: Colors.blueAccent,
                 fontSize: 15.0,
               )));
     return new ExpansionTile(

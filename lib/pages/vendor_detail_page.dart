@@ -1,7 +1,7 @@
-import 'package:bride_story/pages/webview_page.dart';
+// import 'package:bride_story/pages/webview_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+// import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class VendorDetailPage extends StatefulWidget {
   @override
@@ -12,323 +12,323 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
 
-    Widget socialMedia = new Container(
-      padding: EdgeInsets.all(5.0),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          new Text("Social Media", style: TextStyle(fontSize: 14.0)),
-          new Expanded(
-            child: new Container(
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  new Container(
-                    padding: EdgeInsets.only(right: 5.0),
-                    child: new Icon(Icons.polymer),
-                  ),
-                  new Container(
-                      padding: EdgeInsets.only(right: 5.0),
-                      child: new Icon(Icons.card_giftcard)),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    // Widget socialMedia = new Container(
+    //   padding: EdgeInsets.all(5.0),
+    //   child: new Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: <Widget>[
+    //       new Text("Social Media", style: TextStyle(fontSize: 14.0)),
+    //       new Expanded(
+    //         child: new Container(
+    //           child: new Row(
+    //             mainAxisAlignment: MainAxisAlignment.end,
+    //             children: <Widget>[
+    //               new Container(
+    //                 padding: EdgeInsets.only(right: 5.0),
+    //                 child: new Icon(Icons.polymer),
+    //               ),
+    //               new Container(
+    //                   padding: EdgeInsets.only(right: 5.0),
+    //                   child: new Icon(Icons.card_giftcard)),
+    //             ],
+    //           ),
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
 
-    Widget banner = new Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 140.0, 0.0, 0.0),
-      child: new Container(
-          width: 200.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                // topLeft: Radius.circular(15.0),
-                // bottomRight: Radius.circular(15.0)
-                ),
-            color: Colors.white,
-          ),
-          padding: const EdgeInsets.all(6.0),
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new Text(
-                'Michael Bubble - Everything',
-                style: TextStyle(
-                  fontSize: 14.0,
-                ),
-              ),
-              new Text(
-                'Jova Music',
-                style: TextStyle(
-                  fontSize: 12.0,
-                ),
-              ),
-              new Text(
-                'Venue',
-                style: TextStyle(
-                  fontSize: 12.0,
-                ),
-              ),
-            ],
-          )),
-      // ),
-      //  ),
-    );
+    // Widget banner = new Padding(
+    //   padding: const EdgeInsets.fromLTRB(0.0, 140.0, 0.0, 0.0),
+    //   child: new Container(
+    //       width: 200.0,
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.only(
+    //             // topLeft: Radius.circular(15.0),
+    //             // bottomRight: Radius.circular(15.0)
+    //             ),
+    //         color: Colors.white,
+    //       ),
+    //       padding: const EdgeInsets.all(6.0),
+    //       child: new Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: <Widget>[
+    //           new Text(
+    //             'Michael Bubble - Everything',
+    //             style: TextStyle(
+    //               fontSize: 14.0,
+    //             ),
+    //           ),
+    //           new Text(
+    //             'Jova Music',
+    //             style: TextStyle(
+    //               fontSize: 12.0,
+    //             ),
+    //           ),
+    //           new Text(
+    //             'Venue',
+    //             style: TextStyle(
+    //               fontSize: 12.0,
+    //             ),
+    //           ),
+    //         ],
+    //       )),
+    //   // ),
+    //   //  ),
+    // );
 
-    Widget projectImages = new Container(
-      width: screenWidth,
-      height: 200.0,
-      child: new ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/2.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/3.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/4.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/2.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/1.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/2.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/3.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/1.jpg"),
-                      ))),
-              banner,
-            ],
-          ),
-          new Stack(
-            children: <Widget>[
-              new Container(
-                  padding: EdgeInsets.all(5.0),
-                  margin: EdgeInsets.only(right: 5.0),
-                  width: 200.0,
-                  height: 200.0,
-                  decoration: new BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: new AssetImage("assets/images/4.jpg"),
-                      ))),
-              banner,
-            ],
-          )
-        ],
-      ),
-    );
+    // Widget projectImages = new Container(
+    //   width: screenWidth,
+    //   height: 200.0,
+    //   child: new ListView(
+    //     scrollDirection: Axis.horizontal,
+    //     children: <Widget>[
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/2.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/3.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/4.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/2.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/1.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/2.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/3.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/1.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       ),
+    //       new Stack(
+    //         children: <Widget>[
+    //           new Container(
+    //               padding: EdgeInsets.all(5.0),
+    //               margin: EdgeInsets.only(right: 5.0),
+    //               width: 200.0,
+    //               height: 200.0,
+    //               decoration: new BoxDecoration(
+    //                   shape: BoxShape.rectangle,
+    //                   image: new DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: new AssetImage("assets/images/4.jpg"),
+    //                   ))),
+    //           banner,
+    //         ],
+    //       )
+    //     ],
+    //   ),
+    // );
 
-    Widget projectRow = new Container(
-      padding: EdgeInsets.all(12.0),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          new Text("Projects", style: TextStyle(fontSize: 14.0)),
-          new GestureDetector(
-            child: new Text("View All (5) >", style: TextStyle(fontSize: 14.0)),
-            onTap: () {
-              _navigateProjectListPage(context);
-            },
-          )
-        ],
-      ),
-    );
+    // Widget projectRow = new Container(
+    //   padding: EdgeInsets.all(12.0),
+    //   child: new Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     children: <Widget>[
+    //       new Text("Projects", style: TextStyle(fontSize: 14.0)),
+    //       new GestureDetector(
+    //         child: new Text("View All (5) >", style: TextStyle(fontSize: 14.0)),
+    //         onTap: () {
+    //           _navigateProjectListPage(context);
+    //         },
+    //       )
+    //     ],
+    //   ),
+    // );
 
-    Widget buttons = new Container(
-      padding: EdgeInsets.all(10.0),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          new GestureDetector(
-            child: new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                new Icon(Icons.call),
-                new Text("Call", style: TextStyle(fontSize: 14.0)),
-              ],
-            ),
-            onTap: () {
-              _navigateCallAction(context);
-            },
-          ),
-          new Container(
-            height: 30.0,
-            width: 1.0,
-            color: Colors.black,
-            margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-          ),
-          new GestureDetector(
-            child: new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                new Icon(Icons.image),
-                new Text("4D", style: TextStyle(fontSize: 14.0)),
-              ],
-            ),
-            onTap: () {
-              _navigateTo4DPage(context);
-            },
-          ),
-          new Container(
-            height: 30.0,
-            width: 1.0,
-            color: Colors.black,
-            margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-          ),
-          new GestureDetector(
-            child: new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                new Icon(Icons.attach_money),
-                new Text("Price List", style: TextStyle(fontSize: 14.0)),
-              ],
-            ),
-            onTap: () {
-              _navigateToPriceListPage(context);
-            },
-          ),
-          new Container(
-            height: 30.0,
-            width: 1.0,
-            color: Colors.black,
-            margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-          ),
-          new GestureDetector(
-            child: new Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                new Icon(Icons.calendar_today),
-                new Text("Booking Date", style: TextStyle(fontSize: 14.0)),
-              ],
-            ),
-            onTap: () {
-              _navigateToBookingPage(context);
-            },
-          )
-        ],
-      ),
-    );
+    // Widget buttons = new Container(
+    //   padding: EdgeInsets.all(10.0),
+    //   child: new Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //     children: <Widget>[
+    //       new GestureDetector(
+    //         child: new Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: <Widget>[
+    //             new Icon(Icons.call),
+    //             new Text("Call", style: TextStyle(fontSize: 14.0)),
+    //           ],
+    //         ),
+    //         onTap: () {
+    //           _navigateCallAction(context);
+    //         },
+    //       ),
+    //       new Container(
+    //         height: 30.0,
+    //         width: 1.0,
+    //         color: Colors.black,
+    //         margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+    //       ),
+    //       new GestureDetector(
+    //         child: new Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: <Widget>[
+    //             new Icon(Icons.image),
+    //             new Text("4D", style: TextStyle(fontSize: 14.0)),
+    //           ],
+    //         ),
+    //         onTap: () {
+    //           _navigateTo4DPage(context);
+    //         },
+    //       ),
+    //       new Container(
+    //         height: 30.0,
+    //         width: 1.0,
+    //         color: Colors.black,
+    //         margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+    //       ),
+    //       new GestureDetector(
+    //         child: new Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: <Widget>[
+    //             new Icon(Icons.attach_money),
+    //             new Text("Price List", style: TextStyle(fontSize: 14.0)),
+    //           ],
+    //         ),
+    //         onTap: () {
+    //           _navigateToPriceListPage(context);
+    //         },
+    //       ),
+    //       new Container(
+    //         height: 30.0,
+    //         width: 1.0,
+    //         color: Colors.black,
+    //         margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+    //       ),
+    //       new GestureDetector(
+    //         child: new Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: <Widget>[
+    //             new Icon(Icons.calendar_today),
+    //             new Text("Booking Date", style: TextStyle(fontSize: 14.0)),
+    //           ],
+    //         ),
+    //         onTap: () {
+    //           _navigateToBookingPage(context);
+    //         },
+    //       )
+    //     ],
+    //   ),
+    // );
 
-    Widget txtOnline = new Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(8.0),
-      child: new Text("Active 11 days ago.", style: TextStyle(fontSize: 14.0)),
-    );
+    // Widget txtOnline = new Container(
+    //   alignment: Alignment.center,
+    //   padding: EdgeInsets.all(8.0),
+    //   child: new Text("Active 11 days ago.", style: TextStyle(fontSize: 14.0)),
+    // );
 
     Widget bgImage = new Container(
       height: screenHeight / 3,
@@ -465,7 +465,10 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
 
     return SafeArea(
       child: new Scaffold(
-          appBar: new AppBar(title: new Text("Vendor Detail Page")),
+          appBar: new AppBar(
+            title: new Text("Vendor Detail Page"),
+            backgroundColor: Colors.redAccent,
+          ),
           body: new ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
@@ -505,28 +508,28 @@ class _VendorDetailPageState extends State<VendorDetailPage> {
     );
   }
 
-  void _navigateToPriceListPage(BuildContext context) {
-    Navigator.pushNamed(context, "/priceListPage");
-  }
+  // void _navigateToPriceListPage(BuildContext context) {
+  //   Navigator.pushNamed(context, "/priceListPage");
+  // }
 
-  void _navigateTo4DPage(BuildContext context) {
-    // Navigator.pushNamed(context, "/webViewPage");
-    Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new WebviewPage(url: "https://roundme.com/tour/291549/view/919147/", )),
-            );
-  }
+  // void _navigateTo4DPage(BuildContext context) {
+  //   // Navigator.pushNamed(context, "/webViewPage");
+  //   Navigator.push(context,
+  //             new MaterialPageRoute(builder: (context) => new WebviewPage(url: "https://roundme.com/tour/291549/view/919147/", )),
+  //           );
+  // }
 
-  void _navigateCallAction(BuildContext context) {
-    UrlLauncher.launch("tel:+6285693938630");
-  }
+  // void _navigateCallAction(BuildContext context) {
+  //   UrlLauncher.launch("tel:+6285693938630");
+  // }
 
-  void _navigateProjectListPage(BuildContext context) {
-    Navigator.pushNamed(context, "/projectListPage");
-  }
+  // void _navigateProjectListPage(BuildContext context) {
+  //   Navigator.pushNamed(context, "/projectListPage");
+  // }
 
-  void _navigateToBookingPage(BuildContext context) {
-    Navigator.pushNamed(context, "/bookingPage");
-  }
+  // void _navigateToBookingPage(BuildContext context) {
+  //   Navigator.pushNamed(context, "/bookingPage");
+  // }
 }
 
 // One entry in the multilevel list displayed by this app.
@@ -547,7 +550,7 @@ final List<Entry> data = <Entry>[
       new Entry('14 April, Malam'),
       new Entry('18 April, Siang'),
     ],
-  ),  
+  ),
 ];
 
 // Displays one Entry. If the entry has children then it's displayed
@@ -560,10 +563,10 @@ class EntryItem extends StatelessWidget {
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return new ListTile(
-        // subtitle: new Text("subtitle"),
+          // subtitle: new Text("subtitle"),
           title: new Text(root.title,
               style: new TextStyle(
-                color: Colors.blueAccent,                
+                color: Colors.blueAccent,
                 fontSize: 15.0,
               )));
     return new ExpansionTile(

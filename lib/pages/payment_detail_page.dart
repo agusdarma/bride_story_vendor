@@ -59,7 +59,10 @@ class _PaymentDetailPageState extends State<PaymentDetailPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Payment Detail Page")),
+        appBar: new AppBar(
+          title: new Text("Payment Detail Page"),
+          backgroundColor: Colors.redAccent,
+        ),
         body: new Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 5.0,
@@ -174,12 +177,17 @@ class EntryItem extends StatelessWidget {
     Navigator.pushNamed(context, "/attachmentPage");
   }
 
+  void _nothingTodo(BuildContext context) {}
+
   Widget _buildTiles(Entry root) {
     if (root.children.isEmpty)
       return new ListTile(
           onTap: () {
             // Navigator.pushNamed(context, 'other');
-            _navigateToAttachMentPage(ctx);
+            (root.title.contains("DP") || root.title.contains("Booking")) ==
+                    true
+                ? _navigateToAttachMentPage(ctx)
+                : _nothingTodo(ctx);
           },
           trailing:
               (root.title.contains("DP") || root.title.contains("Booking")) ==

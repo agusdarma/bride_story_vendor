@@ -52,7 +52,7 @@ class _SchedulePageState extends State<SchedulePage> {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.blueAccent.shade100,
+        shadowColor: Colors.redAccent.shade100,
         elevation: 5.0,
         child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width,
@@ -60,7 +60,7 @@ class _SchedulePageState extends State<SchedulePage> {
           onPressed: () {
             // Navigator.pushNamed(context, "/homePage");
           },
-          color: Colors.blueAccent,
+          color: Colors.redAccent,
           child: Text('Search', style: TextStyle(color: Colors.white)),
         ),
       ),
@@ -68,7 +68,10 @@ class _SchedulePageState extends State<SchedulePage> {
 
     return new SafeArea(
       child: new Scaffold(
-        appBar: new AppBar(title: new Text("Schedule Page")),
+        appBar: new AppBar(
+          title: new Text("Schedule Page"),
+          backgroundColor: Colors.redAccent,
+        ),
         body: new Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 5.0,
@@ -102,7 +105,7 @@ class _SchedulePageState extends State<SchedulePage> {
                           decoration: new BoxDecoration(
                             border: new Border.all(color: Colors.amber),
                             shape: BoxShape.circle,
-                            color: Theme.of(context).primaryColor,
+                            color: Colors.redAccent,
                           ),
                           child: new Text(
                             tgl.day.toString(),
