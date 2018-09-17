@@ -38,12 +38,17 @@ dependencies:
   # scrolling_calendar: "^0.2.10"
 
   #plugins calendar
-  date_utils: ^0.0.1
+  # date_utils: ^0.0.1
   tuple: ^1.0.1
-  intl: ^0.15.0
+  intl: "^0.15.6"
+  numberpicker: "^0.1.0"
+
+  validate: ^1.7.0
+
+  http: ^0.11.3+17
 
   #webview
-  flutter_webview_plugin: "^0.1.6"
+  flutter_webview_plugin: ^0.2.1+2
 
 
 dev_dependencies:
