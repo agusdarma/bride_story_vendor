@@ -1,6 +1,7 @@
 import 'package:bride_story/pages/attachment_page.dart';
 import 'package:bride_story/pages/home_page.dart';
 import 'package:bride_story/pages/login_page.dart';
+import 'package:bride_story/pages/login_page_new.dart';
 import 'package:bride_story/pages/payment_detail_page.dart';
 import 'package:bride_story/pages/payment_page.dart';
 import 'package:bride_story/pages/schedule_page.dart';

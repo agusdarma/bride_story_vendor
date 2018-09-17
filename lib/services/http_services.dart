@@ -23,6 +23,7 @@ class HttpServices {
   static final signUpProcessUrl = baseUrl + "/signUpProcess";
   static final getListMyBookingUrl = baseUrl + "/getListMyBooking";
   static final uploadImagesUrl = baseUrl + "/uploadImages";
+  // batas api untuk apps cust
   
   
   
