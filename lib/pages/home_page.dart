@@ -1,3 +1,4 @@
+import 'package:bride_story/pages/list_venue_search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bride_story/pages/webview_page.dart';
 
@@ -128,10 +129,13 @@ class _HomePageState extends State<HomePage> {
             ));
     //);
   }
-  void _navigateTo4DPage(BuildContext context) {
+  void _navigateToList4DVenue(BuildContext context) {
     // Navigator.pushNamed(context, "/webViewPage");
+    // Navigator.push(context,
+    //           new MaterialPageRoute(builder: (context) => new WebviewPage(url: "https://roundme.com/tour/291549/view/919147/", )),
+    //         );
     Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new WebviewPage(url: "https://roundme.com/tour/291549/view/919147/", )),
+              new MaterialPageRoute(builder: (context) => new ListVenueSearchPage()),
             );
   }
 
@@ -175,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   //   Navigator.pushNamed(context, 'list-bank');
                   // else
                   //   Navigator.pushNamed(context, 'choose-bank/init');
-                  _navigateTo4DPage(context);
+                  _navigateToList4DVenue(context);
                 }),
             _createCardNavButton(
                 context: context,

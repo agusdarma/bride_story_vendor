@@ -24,7 +24,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  LoginDataVo _data = new LoginDataVo("", "", "", 0);
+  LoginDataVo _data = new LoginDataVo("", "", "", 0,userTypeVendor);
 
   Future<String> getLoginDataSharedPreferences(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -3,20 +3,23 @@ class LoginDataVo {
   String _password = '';
   String _sessionData = '';
   int _sessionDate = 0;
+  int _userType;
 
   LoginDataVo(
-      this._email, this._password, this._sessionData, this._sessionDate);
+      this._email, this._password, this._sessionData, this._sessionDate, this._userType);
 
   LoginDataVo.fromJson(Map<String, dynamic> json)
       : _email = json['email'],
         _password = json['password'],
         _sessionData = json['sessionData'],
+        _userType = json['userType'],
         _sessionDate = json['sessionDate'];
 
   Map<String, dynamic> toJson() => {
         'email': _email,
         'password': _password,
         'sessionData': _sessionData,
+        'userType': _userType,
         'sessionDate': _sessionDate,
       };
 
@@ -37,6 +40,7 @@ class LoginDataVo {
         'password: $_password, '
         'sessionData: $_sessionData'
         'sessionDate: $_sessionDate'
+        'userType: $_userType'
         '}';
   }
 }
