@@ -24,6 +24,7 @@ class HttpServices {
   static final getListMyBookingUrl = baseUrl + "/getListMyBooking";
   static final uploadImagesUrl = baseUrl + "/uploadImages";
   static final getListVenueByUserUrl = baseUrl + "/getListVenueByUser";
+  static final getListPaymentByUserUrl = baseUrl + "/getListPaymentByUser";
   
   // batas api untuk apps cust
   
@@ -227,6 +228,18 @@ class HttpServices {
 
     List<dynamic> listVenue = decoder.convert(a.otherMessage);
     return listVenue;
+  }
+
+  Future<List<dynamic>> getListPaymentByUser(String parameter) async {
+    final String response = await _netUtil
+        .post(getListPaymentByUserUrl, body: parameter);
+
+    const JsonDecoder decoder = const JsonDecoder();
+    Map messageVO = decoder.convert(response);
+    MessageVo a = new MessageVo.fromJson(messageVO);
+
+    List<dynamic> listPayment = decoder.convert(a.otherMessage);
+    return listPayment;
   }
   
   

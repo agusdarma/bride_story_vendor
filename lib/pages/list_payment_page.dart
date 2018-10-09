@@ -42,15 +42,30 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
   //   }
   // }
 
-  void _populateResultData() {
-    // for (var items in listPayment) {
-      // Map venue = items; //store each map
-      // Map venue2 = venue['venue'];
-      // List<dynamic> listBookingDate = venue['listBookingDates'];      
+  void _populateResultData(List<dynamic> listPayment) {
+    for (var items in listPayment) {
+      Map venue = items; //store each map
+      Map venue2 = venue['venueVO'];
+      Map venue3 = venue2['venue'];
+      Map bookingDateVO = venue['bookingDateVO'];
+      String namaPernikahan = bookingDateVO['namaPernikahan'];
+      String namaPenanggungJawab1 = bookingDateVO['namaPenanggungJawab1'];
+      String handPhone1 = bookingDateVO['handPhone1'];
+      String namaPenanggungJawab2 = bookingDateVO['namaPenanggungJawab2'];
+      String handPhone2 = bookingDateVO['handPhone2'];
+      String userEmailBooking = bookingDateVO['userEmailBooking'];    
+      String titleVenue = venue3['titleVenue'];    
+      int dateTime = bookingDateVO['dateTime'];
+      int idBooking = bookingDateVO['id'];    
+      
       ResultMyBookingModel a = new ResultMyBookingModel
-      ('andika', 'budi', '085693939393', 'sasa', '0856939393', 'admin@gmail.com', 'Balai', 1536771600000, 1, 'a@gmail.com');
+      (namaPernikahan, namaPenanggungJawab1, handPhone1, namaPenanggungJawab2, handPhone2, userEmailBooking
+      , titleVenue, dateTime, idBooking, parameter.email);
       listPaymentData.add(a);
-    // }
+      // ResultMyBookingModel b = new ResultMyBookingModel
+      // ('andika2', 'budi2', '085693939393', 'sasa2', '0856939393', 'admin2@gmail.com', 'Balai2', 1536771600000, 1, 'a@gmail.com');
+      // listPaymentData.add(b);
+    }
   }
 
   void _updateBookingDate(List<VenueModel> listVenue) {
@@ -134,31 +149,31 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
         } else {
           parameter = new FilterParam('', 0, '', 0, '', 0, null);
           parameter.setEmail = email;
-          // allVenueDataWithUserLogin(parameter);
-          _populateResultData();
+          allPaymentWithUserLogin(parameter);
+          // _populateResultData();
         }
       }
     });    
-
+    // _populateResultData();
     setState(() {
       displayedDate = '28 Agustus 2018';      
     });
   }
 
-  // void allVenueDataWithUserLogin(FilterParam param) {
-  //   print('Parameter ' + param.email);
-  //   HttpServices http = new HttpServices();
-  //   const JsonEncoder encoder = const JsonEncoder();
-  //   String parameterJson = encoder.convert(param);
-  //   http.getAllVenueWithUser(parameterJson).then((List<dynamic> listVenue) {
-  //     setState(() {
-  //       if (listVenue.length > 0) {
-  //         _populateResultData(listVenue);
-  //         countSearch = listVenue.length.toString();
-  //       }
-  //     });
-  //   });
-  // }
+  void allPaymentWithUserLogin(FilterParam param) {
+    print('Parameter ' + param.email);
+    HttpServices http = new HttpServices();
+    const JsonEncoder encoder = const JsonEncoder();
+    String parameterJson = encoder.convert(param);
+    http.getListPaymentByUser(parameterJson).then((List<dynamic> listVenue) {
+      setState(() {
+        if (listVenue.length > 0) {
+          _populateResultData(listVenue);
+          countSearch = listVenue.length.toString();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -400,6 +415,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Text((index+1).toString()),
                     // imageVenue(context, index),
                     descVenue(context, index),                    
                   ],
