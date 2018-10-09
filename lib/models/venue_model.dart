@@ -10,6 +10,7 @@ class VenueModel {
   String hargaVenue;
   int idCity;
   String locationVenue;
+  String url4d;
   int isDay;
   int isNight;
   int isDayFlag;

@@ -1,4 +1,6 @@
-class FilterParam {
+import 'package:bride_story/data/login_data_vo.dart';
+
+class FilterParam extends LoginDataVo{
   String categoryName;
   int categoryId;
   String countryName;
@@ -9,7 +11,7 @@ class FilterParam {
   int idVenue;
 
   FilterParam(this.categoryName, this.categoryId, this.countryName,
-      this.countryId, this.cityName, this.cityId, this.bookingDate);
+      this.countryId, this.cityName, this.cityId, this.bookingDate) : super('', '', '', 0, 0);
 
   FilterParam.fromJson(Map<String, dynamic> json)
       : categoryName = json['categoryName'],
@@ -19,7 +21,7 @@ class FilterParam {
         cityName = json['cityName'],
         cityId = json['cityId'],
         idVenue = json['idVenue'],
-        bookingDate = json['bookingDate'];
+        bookingDate = json['bookingDate'], super('', '', '', 0, 0);
 
   Map<String, dynamic> toJson() => {
         'categoryName': categoryName,
@@ -30,6 +32,7 @@ class FilterParam {
         'cityId': cityId,
         'idVenue': idVenue,
         'bookingDate': bookingDate,
+        'email': email,
       };
 
   @override

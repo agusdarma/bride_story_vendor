@@ -23,6 +23,8 @@ class HttpServices {
   static final signUpProcessUrl = baseUrl + "/signUpProcess";
   static final getListMyBookingUrl = baseUrl + "/getListMyBooking";
   static final uploadImagesUrl = baseUrl + "/uploadImages";
+  static final getListVenueByUserUrl = baseUrl + "/getListVenueByUser";
+  
   // batas api untuk apps cust
   
   
@@ -206,6 +208,18 @@ class HttpServices {
   Future<List<dynamic>> getListSimilarVenue(String parameter) async {
     final String response = await _netUtil
         .post(getListSimilarVenueUrl, body: parameter);
+
+    const JsonDecoder decoder = const JsonDecoder();
+    Map messageVO = decoder.convert(response);
+    MessageVo a = new MessageVo.fromJson(messageVO);
+
+    List<dynamic> listVenue = decoder.convert(a.otherMessage);
+    return listVenue;
+  }
+
+  Future<List<dynamic>> getAllVenueWithUser(String parameter) async {
+    final String response = await _netUtil
+        .post(getListVenueByUserUrl, body: parameter);
 
     const JsonDecoder decoder = const JsonDecoder();
     Map messageVO = decoder.convert(response);

@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, "/vendorPage");
   }
   void _navigateToPaymentPage(BuildContext context) {
-    Navigator.pushNamed(context, "/paymentPage");
+    Navigator.pushNamed(context, "/listPaymentPage");
   }
 
   Widget _createNavButtons(BuildContext context) {
@@ -156,8 +156,8 @@ class _HomePageState extends State<HomePage> {
     // String labelPromo = AppsLang.get().promo;
     // String labelOthers = AppsLang.get().others;
     String label4DBallRoom = "4D Ballroom";
-    String labelScheduleDate = "Schedule Date";
-    String labelVendorSchedule = "Vendor Schedule";
+    // String labelScheduleDate = "Schedule Date";
+    // String labelVendorSchedule = "Vendor Schedule";
     String labelPayment = "Payment";
 
     return new Expanded(
@@ -181,22 +181,22 @@ class _HomePageState extends State<HomePage> {
                   //   Navigator.pushNamed(context, 'choose-bank/init');
                   _navigateToList4DVenue(context);
                 }),
-            _createCardNavButton(
-                context: context,
-                imageName: 'assets/images/home_transaksi_merchant.png',
-                label: labelScheduleDate,
-                onTap: () {
-                  // Navigator.pushNamed(context, 'merchantlist');
-                  _navigateToSchedulePage(context);
-                }),
-            _createCardNavButton(
-                context: context,
-                imageName: 'assets/images/home_promosi_program.png',
-                label: labelVendorSchedule,
-                onTap: () {
-                  // Navigator.pushNamed(context, 'advertising');
-                  _navigateToVendorPage(context);
-                }),
+            // _createCardNavButton(
+            //     context: context,
+            //     imageName: 'assets/images/home_transaksi_merchant.png',
+            //     label: labelScheduleDate,
+            //     onTap: () {
+            //       // Navigator.pushNamed(context, 'merchantlist');
+            //       _navigateToSchedulePage(context);
+            //     }),
+            // _createCardNavButton(
+            //     context: context,
+            //     imageName: 'assets/images/home_promosi_program.png',
+            //     label: labelVendorSchedule,
+            //     onTap: () {
+            //       // Navigator.pushNamed(context, 'advertising');
+            //       _navigateToVendorPage(context);
+            //     }),
             _createCardNavButton(
                 context: context,
                 imageName: 'assets/images/home_lainnya.png',

@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-
 import 'package:bride_story/data/filter_param.dart';
 import 'package:bride_story/models/venue_model.dart';
+import 'package:bride_story/pages/login_page_new.dart';
+import 'package:bride_story/pages/webview_page.dart';
 import 'package:bride_story/services/http_services.dart';
 import 'package:bride_story/utils/constant.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +12,15 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ListVenueSearchPage extends StatefulWidget {
-
-  ListVenueSearchPage(
-      {Key key})
-      : super(key: key);
+  ListVenueSearchPage({Key key}) : super(key: key);
 
   @override
   _ListVenueSearchPageState createState() => _ListVenueSearchPageState();
 }
 
 class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
-  _ListVenueSearchPageState();  
-  final formatter = new NumberFormat("#,###");  
+  _ListVenueSearchPageState();
+  final formatter = new NumberFormat("#,###");
 
   String text = "Loading";
   List<VenueModel> listVenueData = new List<VenueModel>();
@@ -70,7 +68,8 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
       double latitude = venue2['latitude'];
       double longitude = venue2['longitude'];
       String locationVenue = venue2['locationVenue'];
-      listVenueData.add(new VenueModel(
+      String url4d = venue2['url4d'];
+      VenueModel a = new VenueModel(
           id,
           linkImageVenue,
           titleVenue,
@@ -89,7 +88,9 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
           bookingDateVal,
           listBookingDate,
           latitude,
-          longitude));
+          longitude);
+      a.url4d = url4d;
+      listVenueData.add(a);
     }
     // print(listVenueData.length);
   }
@@ -155,10 +156,50 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
     return bulan;
   }
 
+  Future<String> getLoginDataSharedPreferences(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String json = "";
+    json = (prefs.getString(key) ?? "");
+    print("getLoginDataSharedPreferences " + json);
+    return json;
+  }
+
   @override
   void initState() {
     super.initState();
-    similarVenueData();
+    getLoginDataSharedPreferences(keyLoginParam).then((String json) {
+      const JsonDecoder decoder = const JsonDecoder();
+      Map loginParamVO = decoder.convert(json);
+      String sessionData = loginParamVO['sessionData'];
+      String email = loginParamVO['email'];
+      int sessionDate = loginParamVO['sessionDate'];
+      int timeOutLogin = loginParamVO['timeOutLoginSetting'];
+      // String phoneNo = loginParamVO['phoneNo'];
+      // String password = loginParamVO['password'];
+      if (sessionData.isEmpty) {
+        Navigator.pushReplacement(
+          context,
+          new MaterialPageRoute(builder: (context) => new LoginPage()),
+        );
+      } else {
+        DateTime currentTime = new DateTime.now();
+        DateTime sessionTime = DateTime.fromMillisecondsSinceEpoch(sessionDate);
+        print(currentTime);
+        print(sessionTime);
+        print(currentTime.difference(sessionTime).inSeconds);
+        if (currentTime.difference(sessionTime).inSeconds > timeOutLogin) {
+          Navigator.pushReplacement(
+            context,
+            new MaterialPageRoute(builder: (context) => new LoginPage()),
+          );
+        } else {
+          parameter = new FilterParam('', 0, '', 0, '', 0, null);
+          parameter.setEmail = email;
+          allVenueDataWithUserLogin(parameter);
+        }
+      }
+    });
+
     // HttpServices http = new HttpServices();
     // const JsonEncoder encoder = const JsonEncoder();
     // String parameterJson = encoder.convert(parameter);
@@ -189,11 +230,12 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
     });
   }
 
-  void similarVenueData() {
+  void allVenueDataWithUserLogin(FilterParam param) {
+    print('Parameter ' + param.email);
     HttpServices http = new HttpServices();
     const JsonEncoder encoder = const JsonEncoder();
-    String parameterJson = encoder.convert(parameter);
-    http.getListSimilarVenue(parameterJson).then((List<dynamic> listVenue) {
+    String parameterJson = encoder.convert(param);
+    http.getAllVenueWithUser(parameterJson).then((List<dynamic> listVenue) {
       setState(() {
         if (listVenue.length > 0) {
           _populateResultData(listVenue);
@@ -203,23 +245,6 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
     });
   }
 
-  // Future updateSubtitle(String json) async {
-  //   // print(json);
-  //   // await new Future.delayed(const Duration(seconds: 2));
-  //   const JsonDecoder decoder = const JsonDecoder();
-  //   Map filterParamMap = decoder.convert(json);
-  //   filterParamNew = new FilterParam.fromJson(filterParamMap);
-  //   setState(() {
-  //     text = "Search result for " +
-  //         filterParamNew.categoryName +
-  //         " in " +
-  //         filterParamNew.cityName +
-  //         " ," +
-  //         filterParamNew.countryName;
-  //     // _populateResultData();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     var header = Column(
@@ -227,7 +252,7 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(top: 5.0),
-          child: Text('Similar Venue',
+          child: Text('List Venue',
               style: TextStyle(
                 fontSize: 15.0,
                 fontWeight: FontWeight.bold,
@@ -456,6 +481,16 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
       );
     }
 
+    void _navigateTo4DPage(BuildContext context, VenueModel venueModel) {
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (context) => new WebviewPage(
+                  url: venueModel.url4d,
+                )),
+      );
+    }
+
     Widget content(BuildContext context, int index) {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -472,6 +507,7 @@ class _ListVenueSearchPageState extends State<ListVenueSearchPage> {
             child: InkWell(
               onTap: () {
                 // _navigateVendorPage(context, listVenueData.elementAt(index));
+                _navigateTo4DPage(context, listVenueData.elementAt(index));
               },
               child: Padding(
                 padding: EdgeInsets.all(12.0),
