@@ -8,6 +8,7 @@ const int userTypeCust = 1;
 const int userTypeVendor = 2;
 const String keyLoginParam = 'keyLoginParam';
 const String kParamImageName = '?n=<img>';
+const kAssetImageFolder = 'assets/images/';
 
 const String januari = 'Januari';
 const String februari = 'Februari';

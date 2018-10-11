@@ -5,6 +5,7 @@ import 'package:bride_story/data/filter_param.dart';
 import 'package:bride_story/models/result_mybooking.dart';
 import 'package:bride_story/models/venue_model.dart';
 import 'package:bride_story/pages/login_page_new.dart';
+import 'package:bride_story/pages/payment_detail_new_page.dart';
 import 'package:bride_story/pages/webview_page.dart';
 import 'package:bride_story/services/http_services.dart';
 import 'package:bride_story/utils/constant.dart';
@@ -35,7 +36,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
   //   for (var items in listPayment) {
   //     Map venue = items; //store each map
   //     Map venue2 = venue['venue'];
-  //     List<dynamic> listBookingDate = venue['listBookingDates'];      
+  //     List<dynamic> listBookingDate = venue['listBookingDates'];
   //     ResultMyBookingModel a = new ResultMyBookingModel
   //     ('andika', 'budi', '085693939393', 'sasa', '0856939393', 'admin@gmail.com', 'Balai', 1536771600000, 1, 'a@gmail.com');
   //     listPaymentData.add(a);
@@ -53,14 +54,22 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
       String handPhone1 = bookingDateVO['handPhone1'];
       String namaPenanggungJawab2 = bookingDateVO['namaPenanggungJawab2'];
       String handPhone2 = bookingDateVO['handPhone2'];
-      String userEmailBooking = bookingDateVO['userEmailBooking'];    
-      String titleVenue = venue3['titleVenue'];    
+      String userEmailBooking = bookingDateVO['userEmailBooking'];
+      String titleVenue = venue3['titleVenue'];
       int dateTime = bookingDateVO['dateTime'];
-      int idBooking = bookingDateVO['id'];    
-      
-      ResultMyBookingModel a = new ResultMyBookingModel
-      (namaPernikahan, namaPenanggungJawab1, handPhone1, namaPenanggungJawab2, handPhone2, userEmailBooking
-      , titleVenue, dateTime, idBooking, parameter.email);
+      int idBooking = bookingDateVO['id'];
+
+      ResultMyBookingModel a = new ResultMyBookingModel(
+          namaPernikahan,
+          namaPenanggungJawab1,
+          handPhone1,
+          namaPenanggungJawab2,
+          handPhone2,
+          userEmailBooking,
+          titleVenue,
+          dateTime,
+          idBooking,
+          parameter.email);
       listPaymentData.add(a);
       // ResultMyBookingModel b = new ResultMyBookingModel
       // ('andika2', 'budi2', '085693939393', 'sasa2', '0856939393', 'admin2@gmail.com', 'Balai2', 1536771600000, 1, 'a@gmail.com');
@@ -69,8 +78,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
   }
 
   void _updateBookingDate(List<VenueModel> listVenue) {
-    for (var items in listVenue) {      
-    }
+    for (var items in listVenue) {}
   }
 
   Future<String> _getFilterParam(String key) async {
@@ -153,10 +161,10 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
           // _populateResultData();
         }
       }
-    });    
+    });
     // _populateResultData();
     setState(() {
-      displayedDate = '28 Agustus 2018';      
+      displayedDate = '28 Agustus 2018';
     });
   }
 
@@ -196,7 +204,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
               )),
         )
       ],
-    );    
+    );
 
     Future<Null> _selectDate(
         BuildContext context, List<VenueModel> listVenueData) async {
@@ -308,7 +316,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
                   ),
                 ),
               ],
-            ), 
+            ),
             Row(
               children: <Widget>[
                 Text('Nama Pernikahan :'),
@@ -333,7 +341,8 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
                   flex: 1,
                   child: Container(
                     padding: EdgeInsets.only(left: 4.0, bottom: 2.0),
-                    child: Text(listPaymentData.elementAt(index).namaPenanggungJawab1,
+                    child: Text(
+                        listPaymentData.elementAt(index).namaPenanggungJawab1,
                         overflow: TextOverflow.fade,
                         style: TextStyle(
                           color: Colors.black,
@@ -359,7 +368,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
                   ),
                 ),
               ],
-            ),            
+            ),
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.end,
             //   children: <Widget>[
@@ -378,17 +387,12 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
       );
     }
 
-    void _navigateTo4DPage(BuildContext context, VenueModel venueModel) {
+    void _navigateToPaymentDetail(BuildContext context, ResultMyBookingModel bookingModel) {
       Navigator.push(
         context,
-        new MaterialPageRoute(
-            builder: (context) => new WebviewPage(
-                  url: venueModel.url4d,
-                )),
+        new MaterialPageRoute(builder: (context) => new PaymentDetailNew()),
       );
     }
-
-    
 
     Widget content(BuildContext context, int index) {
       return Container(
@@ -407,6 +411,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
               onTap: () {
                 // _navigateVendorPage(context, listVenueData.elementAt(index));
                 // _navigateTo4DPage(context, listPaymentData.elementAt(index));
+                _navigateToPaymentDetail(context, listPaymentData.elementAt(index));
               },
               child: Padding(
                 padding: EdgeInsets.all(12.0),
@@ -415,9 +420,9 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text((index+1).toString()),
+                    Text((index + 1).toString()),
                     // imageVenue(context, index),
-                    descVenue(context, index),                    
+                    descVenue(context, index),
                   ],
                 ),
               ),
