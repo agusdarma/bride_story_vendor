@@ -1,6 +1,8 @@
 import 'package:bride_story/pages/list_venue_search_page.dart';
+import 'package:bride_story/utils/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:bride_story/pages/webview_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -150,6 +152,17 @@ class _HomePageState extends State<HomePage> {
     Navigator.pushNamed(context, "/listPaymentPage");
   }
 
+  void removeLoginDataInSharedPreferences(String key) async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs.remove(key);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, "");
+  }
+
+  void _navigateToLoginPage(BuildContext context) {
+    Navigator.pushReplacementNamed(context, "/loginPage");
+  }
+
   Widget _createNavButtons(BuildContext context) {
     // String labelBankingTrx = AppsLang.get().bankingTrx;
     // String labelMerchantTrx = AppsLang.get().merchantTrx;
@@ -159,6 +172,7 @@ class _HomePageState extends State<HomePage> {
     // String labelScheduleDate = "Schedule Date";
     // String labelVendorSchedule = "Vendor Schedule";
     String labelPayment = "Payment";
+    String labelLogout = "Logout";
 
     return new Expanded(
         flex: 1,
@@ -204,6 +218,15 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   // Navigator.pushNamed(context, 'other');
                    _navigateToPaymentPage(context);
+                }),
+            _createCardNavButton(
+                context: context,
+                imageName: 'assets/images/home_lainnya.png',
+                label: labelLogout,
+                onTap: () {
+                  // Navigator.pushNamed(context, 'other');
+                  removeLoginDataInSharedPreferences(keyLoginParam);
+                   _navigateToLoginPage(context);
                 }),
           ],
         ));

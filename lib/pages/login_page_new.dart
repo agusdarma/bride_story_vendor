@@ -24,7 +24,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  LoginDataVo _data = new LoginDataVo("", "", "", 0,userTypeVendor);
+  LoginDataVo _data = new LoginDataVo("", "", "", 0, userTypeVendor);
 
   Future<String> getLoginDataSharedPreferences(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -37,30 +37,29 @@ class _LoginPageState extends State<LoginPage> {
   initState() {
     super.initState();
     getLoginDataSharedPreferences(keyLoginParam).then((String json) {
-                const JsonDecoder decoder = const JsonDecoder();
-                Map loginParamVO = decoder.convert(json);
-                String sessionData = loginParamVO['sessionData'];
-                int sessionDate = loginParamVO['sessionDate'];
-                int timeOutLogin = loginParamVO['timeOutLoginSetting'];
-                // String phoneNo = loginParamVO['phoneNo'];
-                // String password = loginParamVO['password'];
-                if (sessionData.isEmpty) {
-                  
-                } else {
-                  DateTime currentTime = new DateTime.now();
-                  DateTime sessionTime =
-                      DateTime.fromMillisecondsSinceEpoch(sessionDate);
-                  print(currentTime);
-                  print(sessionTime);
-                  print(currentTime.difference(sessionTime).inSeconds);
-                  if (currentTime.difference(sessionTime).inSeconds >
-                      timeOutLogin) {
-                    
-                  } else {
-                    Navigator.pushReplacementNamed(context, "/homePage");
-                  }
-                }
-              });
+      if (json.isEmpty) {
+        return;
+      }
+      const JsonDecoder decoder = const JsonDecoder();
+      Map loginParamVO = decoder.convert(json);
+      String sessionData = loginParamVO['sessionData'];
+      int sessionDate = loginParamVO['sessionDate'];
+      int timeOutLogin = loginParamVO['timeOutLoginSetting'];
+      // String phoneNo = loginParamVO['phoneNo'];
+      // String password = loginParamVO['password'];
+      if (sessionData.isEmpty) {
+      } else {
+        DateTime currentTime = new DateTime.now();
+        DateTime sessionTime = DateTime.fromMillisecondsSinceEpoch(sessionDate);
+        print(currentTime);
+        print(sessionTime);
+        print(currentTime.difference(sessionTime).inSeconds);
+        if (currentTime.difference(sessionTime).inSeconds > timeOutLogin) {
+        } else {
+          Navigator.pushReplacementNamed(context, "/homePage");
+        }
+      }
+    });
   }
 
   String _validateEmail(String value) {

@@ -61,6 +61,12 @@ void main() {
     return new ListPaymentPage();
   }));
 
+  // Define our payment page.
+  router.define('/loginPage', handler: new Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+    return new LoginPage();
+  }));
+
 
   // initSharedPreferences();
 
