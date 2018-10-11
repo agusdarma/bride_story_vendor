@@ -6,9 +6,12 @@ class ResultMyBookingModel {
   String handPhone2;
   String userEmailBooking;
   String titleVenue;  	
-  int dateTime;
+  int dateTimeMilisecond;
   int bookingId;
-  String emailUserLogin;  	
+  String emailUserLogin;  
+  String fileNameImage;	
+
+  String get getFileNameImage => fileNameImage;
 
   ResultMyBookingModel(
       this.namaPernikahan,
@@ -18,7 +21,8 @@ class ResultMyBookingModel {
       this.handPhone2,
       this.userEmailBooking,
       this.titleVenue,
-      this.dateTime,
+      this.dateTimeMilisecond,
       this.bookingId,
-      this.emailUserLogin);
+      this.emailUserLogin,
+      this.fileNameImage);
 }

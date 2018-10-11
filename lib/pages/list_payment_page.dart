@@ -55,8 +55,9 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
       String namaPenanggungJawab2 = bookingDateVO['namaPenanggungJawab2'];
       String handPhone2 = bookingDateVO['handPhone2'];
       String userEmailBooking = bookingDateVO['userEmailBooking'];
+      String fileNameImage = bookingDateVO['fileNameImage'];
       String titleVenue = venue3['titleVenue'];
-      int dateTime = bookingDateVO['dateTime'];
+      int dateTimeMilisecond = bookingDateVO['dateTimeMilisecond'];
       int idBooking = bookingDateVO['id'];
 
       ResultMyBookingModel a = new ResultMyBookingModel(
@@ -67,9 +68,10 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
           handPhone2,
           userEmailBooking,
           titleVenue,
-          dateTime,
+          dateTimeMilisecond,
           idBooking,
-          parameter.email);
+          parameter.email,
+          fileNameImage);
       listPaymentData.add(a);
       // ResultMyBookingModel b = new ResultMyBookingModel
       // ('andika2', 'budi2', '085693939393', 'sasa2', '0856939393', 'admin2@gmail.com', 'Balai2', 1536771600000, 1, 'a@gmail.com');
@@ -390,7 +392,7 @@ class _ListPaymentPageState extends State<ListPaymentPage> {
     void _navigateToPaymentDetail(BuildContext context, ResultMyBookingModel bookingModel) {
       Navigator.push(
         context,
-        new MaterialPageRoute(builder: (context) => new PaymentDetailNew()),
+        new MaterialPageRoute(builder: (context) => new PaymentDetailNew(bookingModel: bookingModel,)),
       );
     }
 
